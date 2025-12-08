@@ -1,0 +1,34 @@
+/* tslint:disable */
+/* eslint-disable */
+export const memory: WebAssembly.Memory;
+export const __wbg_colorpoint_free: (a: number, b: number) => void;
+export const __wbg_colorpoints_free: (a: number, b: number) => void;
+export const __wbg_get_colorpoint_a: (a: number) => number;
+export const __wbg_get_colorpoint_b: (a: number) => number;
+export const __wbg_get_colorpoint_g: (a: number) => number;
+export const __wbg_get_colorpoint_r: (a: number) => number;
+export const __wbg_set_colorpoint_a: (a: number, b: number) => void;
+export const __wbg_set_colorpoint_b: (a: number, b: number) => void;
+export const __wbg_set_colorpoint_g: (a: number, b: number) => void;
+export const __wbg_set_colorpoint_r: (a: number, b: number) => void;
+export const colorpoint_new: (a: number, b: number, c: number, d: number) => number;
+export const colorpoints_clear: (a: number) => void;
+export const colorpoints_generate_random_points: (a: number, b: number, c: number, d: bigint) => void;
+export const colorpoints_get_points_as_bytes: (a: number) => [number, number];
+export const colorpoints_len: (a: number) => number;
+export const colorpoints_load_from_bytes: (a: number, b: number, c: number) => void;
+export const colorpoints_new: () => number;
+export const colorpoints_sort_by_a: (a: number) => void;
+export const colorpoints_sort_by_all: (a: number) => void;
+export const colorpoints_sort_by_b: (a: number) => void;
+export const colorpoints_sort_by_g: (a: number) => void;
+export const colorpoints_sort_by_r: (a: number) => void;
+export const create_points: (a: number) => number;
+export const free_points: (a: number) => void;
+export const generate_points: (a: number, b: number) => void;
+export const get_points_data: (a: number) => [number, number];
+export const sort_points: (a: number) => void;
+export const __wbindgen_externrefs: WebAssembly.Table;
+export const __wbindgen_malloc: (a: number, b: number) => number;
+export const __wbindgen_free: (a: number, b: number, c: number) => void;
+export const __wbindgen_start: () => void;

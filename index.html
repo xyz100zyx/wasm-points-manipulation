@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Color Points Generator</title>
+    <style>
+      #container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+      }
+      .controls {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      #status {
+        padding: 10px;
+        background: #f0f0f0;
+        border-radius: 5px;
+        font-family: monospace;
+      }
+      #visualization {
+        width: 100%;
+        height: 200px;
+        border: 1px solid #ccc;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+      }
+      .pixel {
+        width: 1px;
+        height: 1px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div class="controls"></div>
+
+      <div id="status">Loading</div>
+      <canvas id="visualization" width="1000" height="1000"></canvas>
+    </div>
+    <script src="./src/main.js"></script>
+  </body>
+</html>
