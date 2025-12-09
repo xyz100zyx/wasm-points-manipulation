@@ -2,6 +2,7 @@ use wasm_bindgen::prelude::*;
 use rayon::prelude::*;
 use std::sync::{Arc, Mutex};
 
+#[repr(C)]
 #[wasm_bindgen]
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct ColorPoint {
