@@ -78,6 +78,7 @@ self.onmessage = async function (event) {
 
         points.clear();
       } catch (error) {
+
         self.postMessage({
           type: "error",
           error: error.message,

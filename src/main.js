@@ -62,6 +62,20 @@ function generateAndSort(sortBy) {
   });
 }
 
+function initControls() {
+  const controlsSection = document.getElementById("controls");
+
+  const controls = controlsSection.childNodes.forEach((controlNode) => {
+    if (controlNode.dataset && controlNode.dataset.color) {
+      controlNode.addEventListener("click", () => {
+        generateAndSort(controlNode.dataset.color.toLowerCase());
+      });
+    }
+  });
+}
+
+initControls();
+
 function visualizePoints(pointsData) {
   const maxPoints = pointsData.length / 4;
 
