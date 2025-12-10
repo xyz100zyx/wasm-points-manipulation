@@ -81,28 +81,36 @@ function visualizePoints(pointsData) {
 
   const canvas = document.getElementById("visualization");
 
-  const ctx = canvas.getContext("2d");
+  const offscreenCanvas = canvas.transferControlToOffscreen();
 
-  document.getElementById("container").appendChild(canvas);
+  worker.postMessage(
+    {
+      type: "draw",
+      data: {
+        offscreenCanvas,
+        drawableData: pointsData,
+      },
+    },
+    [pointsData.buffer, offscreenCanvas]
+  );
+  // canvas.height = 600;
+  // canvas.width = 600;
+  // let row = 0;
+  // let column = 0;
+  // for (let i = 0; i < maxPoints; i++) {
+  //   const idx = i * 4;
+  //   if (column % 600 === 0 && !!column) {
+  //     row++;
+  //     column = 0;
+  //   }
+  //   ctx.fillStyle = `rgb(${pointsData[idx]}, ${pointsData[idx + 1]}, ${
+  //     pointsData[idx + 2]
+  //   })`;
 
-  canvas.height = 600;
-  canvas.width = 600;
-  let row = 0;
-  let column = 0;
-  for (let i = 0; i < maxPoints; i++) {
-    const idx = i * 4;
-    if (column % 600 === 0 && !!column) {
-      row++;
-      column = 0;
-    }
-    ctx.fillStyle = `rgb(${pointsData[idx]}, ${pointsData[idx + 1]}, ${
-      pointsData[idx + 2]
-    })`;
+  //   ctx.fillRect(column, row, 1, 1);
 
-    ctx.fillRect(column, row, 1, 1);
-
-    column++;
-  }
+  //   column++;
+  // }
 }
 
 window.onload = initWorker;

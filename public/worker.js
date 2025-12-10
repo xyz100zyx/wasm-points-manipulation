@@ -78,12 +78,39 @@ self.onmessage = async function (event) {
 
         points.clear();
       } catch (error) {
-
         self.postMessage({
           type: "error",
           error: error.message,
         });
       }
       break;
+
+    case "draw":
+      const offscreenCanvas = data.offscreenCanvas;
+
+      const pixelsToDraw = data.drawableData;
+
+      console.log({ offscreenCanvas, pixelsToDraw });
+
+      if (!offscreenCanvas || !pixelsToDraw) break;
+
+      const ctx = offscreenCanvas.getContext("2d");
+
+      let row = 0;
+      let column = 0;
+      for (let i = 0; i < pixelsToDraw.length / 4; i++) {
+        const idx = i * 4;
+        if (column % 600 === 0 && !!column) {
+          row++;
+          column = 0;
+        }
+        ctx.fillStyle = `rgb(${pixelsToDraw[idx]}, ${pixelsToDraw[idx + 1]}, ${
+          pixelsToDraw[idx + 2]
+        })`;
+
+        ctx.fillRect(column, row, 1, 1);
+
+        column++;
+      }
   }
 };
