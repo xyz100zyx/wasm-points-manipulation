@@ -1,5 +1,9 @@
 let worker = null;
 
+const canvas = document.getElementById("visualization");
+
+const offscreenCanvas = canvas.transferControlToOffscreen();
+
 function initWorker() {
   if (!worker) {
     worker = new Worker("worker.js");
@@ -38,7 +42,15 @@ function initWorker() {
       }
     };
 
-    worker.postMessage({ type: "init" });
+    worker.postMessage(
+      {
+        type: "init",
+        data: {
+          offscreenCanvas,
+        },
+      },
+      [offscreenCanvas]
+    );
   }
 }
 
@@ -77,21 +89,14 @@ function initControls() {
 initControls();
 
 function visualizePoints(pointsData) {
-  const maxPoints = pointsData.length / 4;
-
-  const canvas = document.getElementById("visualization");
-
-  const offscreenCanvas = canvas.transferControlToOffscreen();
-
   worker.postMessage(
     {
       type: "draw",
       data: {
-        offscreenCanvas,
         drawableData: pointsData,
       },
     },
-    [pointsData.buffer, offscreenCanvas]
+    [pointsData.buffer]
   );
   // canvas.height = 600;
   // canvas.width = 600;

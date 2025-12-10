@@ -1,4 +1,5 @@
 let wasmModule = null;
+var offscreenCanvas1 = null;
 
 async function loadWasm() {
   try {
@@ -19,6 +20,13 @@ self.onmessage = async function (event) {
 
   switch (type) {
     case "init":
+      if (!data.offscreenCanvas) break;
+
+      console.log({ data: data.offscreenCanvas });
+
+      offscreenCanvas1 = data.offscreenCanvas;
+      console.log({ offscreenCanvas1 });
+
       await loadWasm();
       break;
 
@@ -86,15 +94,11 @@ self.onmessage = async function (event) {
       break;
 
     case "draw":
-      const offscreenCanvas = data.offscreenCanvas;
-
       const pixelsToDraw = data.drawableData;
+      console.log({ offscreenCanvas1 });
+      if (!offscreenCanvas1 || !pixelsToDraw) break;
 
-      console.log({ offscreenCanvas, pixelsToDraw });
-
-      if (!offscreenCanvas || !pixelsToDraw) break;
-
-      const ctx = offscreenCanvas.getContext("2d");
+      const ctx = offscreenCanvas1.getContext("2d");
 
       let row = 0;
       let column = 0;
